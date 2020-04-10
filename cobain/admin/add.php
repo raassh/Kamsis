@@ -44,7 +44,7 @@
         //$pass = $_POST['password'];
         include_once 'autoincr.php';
         include_once '../koneksi.php';
-        $arr = mysqli_query($db, "SELECT admin.admin_id, admin.username, terbitan.post, terbitan.tanggal, terbitan.kd_terbit FROM terbitan INNER JOIN admin on terbitan.admin_id=admin.admin_id ORDER BY terbitan.tanggal DESC");
+        $arr = mysqli_query($db, "SELECT admin.admin_id, admin.username, terbitan.post, terbitan.tanggal, terbitan.kd_terbit FROM terbitan INNER JOIN admin on terbitan.admin_id=admin.admin_id ORDER BY terbitan.kd_terbit DESC");
         $kda = mysqli_fetch_array($arr);
         $ppos = htmlspecialchars($_POST['post']);
         $jdl = htmlspecialchars($_POST['judul']);
