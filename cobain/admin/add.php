@@ -62,7 +62,7 @@
         if($result) // will return true if succefull else it will return false
         {
         // code here
-        echo "added successfully. <a href='index2.php'>View Users</a>";
+        echo "added successfully. <a href='addpost.php'>View Users</a>";
         }else{
             echo "Error: " . $result . "<br>" . $db->error;
         }
