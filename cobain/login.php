@@ -13,13 +13,18 @@ $data = mysqli_query($db,"select * from admin where username='$username'");
 
 // menghitung jumlah data yang ditemukan
 $cek = mysqli_num_rows($data);
-list($id, $username, $pass) = mysqli_fetch_array($data);
+list($id, $username, $pass, $stat) = mysqli_fetch_array($data);
 if($cek > 0){
 	if (password_verify($password, $pass)){
 		session_start();
+		$_SESSION['admin_id'] = $id;
 		$_SESSION['username'] = $username;
 		$_SESSION['status'] = "login";
-		header("location:admin/index2.php");
+		if ($stat == "admin") {
+			header("location:admin/halaman_admin.php");	
+		}elseif ($stat == "user") {
+			header("location:admin/addpost.php");
+		}
 	}else{
 		echo '<script language="javascript">
                     window.alert("LOGIN GAGAL! Silakan coba lagi");

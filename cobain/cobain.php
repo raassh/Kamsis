@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>titter</title>
+	<style type="text/css">
+    </style>
 </head>
 <body>
 	<h2>Login</h2>
@@ -39,5 +41,25 @@
 			</tr>
 		</table>			
 	</form>
+<?php
+// Create database connection using config file
+include_once("koneksi.php");
+include_once 'admin/autoincr.php';
+
+// Fetch all users data from database
+$pstan = mysqli_query($db, "SELECT admin.admin_id, admin.username, terbitan.post, terbitan.tanggal, terbitan.kd_terbit, terbitan.judul FROM terbitan INNER JOIN admin on terbitan.admin_id=admin.admin_id");
+?>
+<div>
+<?php while ($pos = mysqli_fetch_array($pstan)) {
+    ?>
+    <div>
+        <div><h2><?php echo $pos['judul']?></h2></div>
+        <div><?php echo substr($pos['post'],0,250);
+            echo ".....<br />[ <a href=index2.php?id=".$pos['kd_terbit'].">Read More</a> ]<hr/>";
+            ?>              
+        </div>
+    </div>
+<?php }?>
+</div>
 </body>
 </html>
