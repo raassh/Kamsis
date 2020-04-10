@@ -6,8 +6,9 @@ include_once("../koneksi.php");
 $id = $_GET['id'];
 
 // Delete user row from table based on given id
-$result = mysqli_query($db, "DELETE FROM admin WHERE id=$id");
+$result = mysqli_query($db, "DELETE FROM komentar WHERE kd_terbit='$id'");
+$result2 = mysqli_query($db, "DELETE FROM terbitan WHERE kd_terbit='$id'");
 
 // After delete redirect to Home, so that latest user list will be displayed.
-header("Location:index2.php");
+header("Location:addpost.php");
 ?>
